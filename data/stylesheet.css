@@ -1,0 +1,115 @@
+body{
+  margin: 5% auto;
+}
+header{
+  text-align: center;
+  margin: 1% auto;
+  font-size: 28px;
+}
+
+.d_sign_in,.d_nouser{
+  text-align: center;
+  margin: 3% auto 1%;
+}
+
+.d_sign_up{
+  text-align: center;
+}
+
+.button_sign_in,.button_sign_out,.button_sign_up {
+  display: inline-block;
+  border-radius: 5%;          /* 角丸       */
+  font-size: 16px;        /* 文字サイズ */
+  text-align: center;      /* 文字位置   */
+  cursor: pointer;     /* カーソル   */
+  padding: 12px 20px;   /* 余白       */
+  background: #000066;     /* 背景色     */
+  color: #ffffff;     /* 文字色     */
+  line-height: 1em;         /* 1行の高さ  */
+  transition: .3s;         /* なめらか変化 */
+  box-shadow: 6px 6px 3px #666666;  /* 影の設定 */
+  border: 2px solid #000066;    /* 枠の指定 */
+  margin: 1% auto;
+}
+.button_sign_in:hover,.button_sign_out:hover,.button_sign_up:hover {
+  box-shadow: none;        /* カーソル時の影消去 */
+  color: #000066;     /* 背景色     */
+  background: #ffffff;     /* 文字色     */
+}
+
+table.timetable {
+	font-family: verdana,arial,sans-serif;
+	font-size: 16px;
+	color: #333333;
+	border-width: 1px;
+	border-color: rgb(166, 215, 147);
+	border-collapse: collapse;
+  margin: 1% auto;
+  width: 70%;
+}
+table.timetable th {
+	background: rgb(173, 173, 159);
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: rgb(166, 215, 147);
+}
+table.timetable td {
+	background: rgb(115, 151, 215);
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: rgb(166, 215, 147);
+  text-align: center;
+}
+
+button.button_back{
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #00bcd4;
+  transition: .4s;
+  font-size: 18px;
+  display: inline;
+}
+
+button.button_back:hover {
+    background: #1ec7bb;
+}
+
+
+
+/*   time_start.py  */
+.msg_to_user{
+  text-align: center;
+}
+
+
+/*   time_schedule_in.py   */
+.time_button{
+  width:50%;
+  margin: auto;
+  text-align: center;
+}
+
+input.button_start,input.button_finish {
+    font-size: 1.4em;  /* 文字サイズを1.4emに指定 */
+    font-weight: bold;  /* 文字の太さをboldに指定 */
+    padding: 10px 30px;  /* 縦方向に10px、* 横方向に30pxの余白を指定 */
+    background-color: #248;  /* 背景色を濃い青色に指定 */
+    color: #fff;  /* 文字色を白色に指定 */
+    border-style: none;  /* ボーダーをなくす */
+    box-shadow: 2px 2px 3px 1px #666;  /* ボタンの影の指定,* 影の横幅を2px，* 縦長を2px，* ぼかしを3px，* 広がりを1px，* 色を#666（グレー）に指定 */
+    -moz-box-shadow: 2px 2px 3px 1px #666;
+    -webkit-box-shadow: 2px 2px 3px 1px #666;
+    text-shadow: 1px 1px 2px #000;  /* テキストの影の指定，* 影の横幅を1px，* 縦長を1px，* ぼかしを2px，* 色を#000（黒）に指定 */
+    margin: 10px;
+}
+
+input.button_start:hover,input.button_finish:hover {
+    background-color: #24d;  /* 背景色を明るい青色に指定 */
+    color: #fff;  /* 文字色を白色に指定 */
+}
