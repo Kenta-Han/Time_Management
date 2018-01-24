@@ -9,6 +9,7 @@ c = connect.cursor()
 
 now = datetime.datetime.today() ## 現在の日付を取得
 form = cgi.FieldStorage()
+user_name = form.getvalue('user_name')
 user_id = form.getvalue('user_id')
 password = form.getvalue('password')
 datetime_finish = form.getvalue('datetime_finish')
@@ -38,10 +39,8 @@ sql_update = "update "
 
 connect.commit()
 
-c.execute("select name from user where user_id='" + str(user_id) + "' and password='" + str(password) + "';")
-name = c.fetchone()[0]
 
-print("<h2 class='msg_to_user'>" + str(name) + "さん．お疲れ様でした！</h2>")
+print("<h2 class='msg_to_user'>" + str(user_name) + "さん．お疲れ様でした！</h2>")
 
 print("<div class='time_button'>")
 print("<button onclick='history.back()' class='button_back'/>戻る</button>")
