@@ -46,7 +46,7 @@ print("<h2 class='msg_to_user'>" + str(name) + "さん．お疲れ様でした�
 print("<div class='time_button'>")
 print("<button onclick='history.back()' class='button_back'/>戻る</button>")
 
-print("<form action='login.py' method='post' >")
+print("<form action='sign_in.py' method='post' >")
 logout = '' ## 空要素
 print("<input type='hidden' name='user_id' value='" + logout + "'>")
 print("<input type='hidden' name='password' value='" + logout + "'>")

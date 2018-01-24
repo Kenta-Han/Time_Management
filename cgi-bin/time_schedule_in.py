@@ -34,7 +34,7 @@ for i in c:
 if not user_info:
     print("<h1 style='text-align:center;'> No User </h1>")
     print("<div class='d_nouser'>")
-    print("<form action='login.py' method='post'>")
+    print("<form action='sign_in.py' method='post'>")
     print("<input type='submit' value='ログイン' class='button_sign_in'/>")
     print("</form>")
     print("<form action='sign_up.py' method='post'>")
@@ -68,7 +68,7 @@ else:
     print("<input type='submit' value='帰宅' class='button_finish'/>")
     print("</form>")
 
-    print("<form action='login.py' method='post' >")
+    print("<form action='sign_in.py' method='post' >")
     logout = '' ## 空要素
     print("<input type='hidden' name='user_id' value='" + logout + "'>")
     print("<input type='hidden' name='password' value='" + logout + "'>")
