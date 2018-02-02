@@ -26,6 +26,7 @@ print("<h3>ユーザ名：<input type='text' name='user_name' style='width: 250p
 print("<h3>生年月日：<input type='text' name='birthday' style='width: 250px;height: 26px;font-size:16px;'></h3>")
 print("<h3>ユーザID：<input type='text' name='user_id' style='width: 250px;height: 26px;font-size:16px;'></h3>")
 print("<h3>パスワード：<input type='password' name='password' style='width: 250px;height: 26px;font-size:16px;'></h3>")
+print("<h3>パスワード再入力：<input type='password' name='password_re' style='width: 250px;height: 26px;font-size:16px'></h3>")
 print("<h3>メールアドレス：<input type='text' name='mail' style='width: 250px;height: 26px;font-size:16px;'></h3>")
 print("<input type='submit' value='登録' class='button_sign_up'/>")
 print("</div>")
