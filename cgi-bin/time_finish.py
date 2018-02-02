@@ -28,17 +28,15 @@ html_body = u"""
 """
 print(html_body)
 
-# ymd = datetime_finish.split()[0]
-#
-# year = ymd.split("-")[0] ## 年
-# month = ymd.split("-")[1] ## 月
-# day = ymd.split("-")[2] ## 日
-# weekday = date(int(year),int(month),int(day)).isoweekday() ## 曜日
+## idを検索
+sql_search_id = "select max(id) from main_table where user_id='" + user_id + "';"
+c.execute(sql_search_id)
+sql_id = c.fetchone()[0]
 
-sql_update = "update "
-
+## finish_timeをupdate
+sql_update = "update main_table set finish_time='" + datetime_finish + "' where id='" + str(sql_id) + "';"
+c.execute(sql_update)
 connect.commit()
-
 
 print("<h2 class='msg_to_user'>" + str(user_name) + "さん．お疲れ様でした！</h2>")
 

@@ -36,7 +36,7 @@ if password == password_re:
     password = cipher.encrypt(password).decode("utf8") ## 暗号化
     password_re = cipher.encrypt(password_re).decode("utf8") ## 暗号化
 
-    sql_insert = "insert into user(name, birthday, user_id, password, password_re, mail) values(%s,%s,%s,%s,%s);"
+    sql_insert = "insert into user(name, birthday, user_id, password, password_re, mail) values(%s,%s,%s,%s,%s,%s);"
     c.execute(sql_insert,(user_name,birthday,user_id,str(password),str(password_re),mail))
     connect.commit()
 

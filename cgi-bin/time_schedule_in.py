@@ -7,7 +7,6 @@ import mypackage.aescipher as myp_aesc
 connect = MySQLdb.connect(host='localhost', user='root', passwd='mysql', db='time_management', charset='utf8')
 c = connect.cursor()
 
-now = datetime.datetime.today() ## 現在の日付を取得
 form = cgi.FieldStorage()
 user_id = form.getvalue('user_id')
 password = form.getvalue('password')
@@ -62,9 +61,10 @@ else:
         print("<tr><th colspan=5>生年月日</th><td>" + str(user_info[0][2]) + "</td></tr>")
         print("<tr><th colspan=5>ユーザID</th><td>" + str(user_info[0][3]) + "</td></tr>")
         # print("<tr><th colspan=5>パスワード</th><td>" + str(user_info[0][4]) + "</td></tr>")
-        print("<tr><th colspan=5>メールアドレス</th><td>" + str(user_info[0][5]) + "</td></tr>")
+        print("<tr><th colspan=5>メールアドレス</th><td>" + str(user_info[0][6]) + "</td></tr>")
         print("</tbody></table>")
 
+        now = datetime.datetime.today() ## 現在の日付を取得
         ##print(now) ## 2010-05-08 15:42:00.731000
 
         print("<div class='time_button'>")
