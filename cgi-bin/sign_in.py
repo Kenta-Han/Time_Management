@@ -1,43 +1,42 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import cgi,cgitb,MySQLdb,datetime,sys
-from Crypto.Cipher import AES
+import cgi,cgitb,MySQLdb,datetime,sys,json
+import mypackage.aescipher as myp_aesc
 
 # DBに接続しカーソルを取得する
-connect = MySQLdb.connect(host='localhost', user='root', passwd='mysql', db='time_management', charset='utf8')
-c = connect.cursor()
+conn= MySQLdb.connect(host='localhost', user='root', passwd='mysql', db='time_management', charset='utf8')
+cur = conn.cursor()
+print('Content-type: text/html\nAccess-Control-Allow-Origin: *\n')
 
-html_body = u"""
-<!DOCTYPE html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-<link href='/data/stylesheet.css' rel='stylesheet' type='text/css' />
-<title>勤怠管理</title>
-</head>
+cgitb.enable()
+form = cgi.FieldStorage()
+user_id = form.getvalue('user_id')
+password = form.getvalue('password')
 
-<body>
-<header><h1>勤怠管理</h1></header>
-"""
-print(html_body)
+cur.execute("SELECT * FROM user WHERE user_id='" + str(user_id) + "';")
+user_info_kari = []
+for i in cur:
+    user_info_kari.append(i)
 
-## ログイン
-print("<form action='time_schedule_in.py' method='post'>")
-print("<div class='d_sign_in'>")
-print("<h3>ユーザID：<input type='text' name='user_id' style='width: 250px;height: 26px;font-size:16px;'></h3>")
-print("<h3>パスワード：<input type='password' name='password' style='width: 250px;height: 26px;font-size:16px;'></h3>")
-print("<input type='submit' value='ログイン' class='button_sign_in'/>")
-print("</div>")
-print("</form>")
+## ユーザIDがない場合
+if not user_info_kari:
+    res_json = {"message":""}
+    res_json["message"] = "ユーザが見つかりませんでした"
+    print(json.dumps(res_json))
+## ユーザIDがある場合
+else:
+    cipher = myp_aesc.AESCipher("PkDv17c6xxiqXPrvG2cUiq90VIrERfthHuViKapv6E1F7E0IgP")
+    db_password = cipher.decrypt(user_info_kari[0][4].encode("utf8")) ## 複号化
 
- ## 新規登録
-print("<form action='sign_up.py' method='post'>")
-print("<div class='d_sign_up'>")
-print("<input type='submit' value='新規登録' class='button_sign_up'/>")
-print("</div>")
-print("</form>")
+    ## パスワードが合致するの場合
+    if db_password.decode("utf8") == password:
+        cur.execute("SELECT * FROM user WHERE user_id='" + str(user_id) + "' AND password='" + str(user_info_kari[0][4]) + "';")
+        user_info = []
+        for i in cur:
+            user_info.append(i)
 
-print("</body></html>")
-
-c.close
-connect.close
+        res_json = {"message":"Yes"}
+        print(json.dumps(res_json))
+    else:
+        res_json = {"message":"パスワードが異なります．"}
+        print(json.dumps(res_json))

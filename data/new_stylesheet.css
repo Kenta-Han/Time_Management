@@ -1,0 +1,52 @@
+body{
+  margin: 5% auto;
+}
+
+header{
+  text-align: center;
+  margin: 1% auto;
+  font-size: 28px;
+}
+
+form {
+  margin: 100px auto;
+  width:50%;
+}
+
+#input_data{
+  text-align: left;
+  width:70%;
+  margin: 0px 15%;
+}
+
+#button_set{
+  margin: 60px auto;
+}
+
+#sign_in{
+  text-align: center;
+}
+
+.square_btn {
+    position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #fd9535;/*色*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    border: solid 2px #d27d00;/*線色*/
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.square_btn:active {/*押したとき*/
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+#sign_up{
+  text-align: center;
+}

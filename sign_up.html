@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link href="/data/new_stylesheet.css" rel="stylesheet" type="text/css" />
+  <title>新規登録</title>
+</head>
+
+<body>
+  <header>
+    <h1>新規登録</h1>
+  </header>
+
+  <form id="sign_up">
+    <div id="input_data">
+      <h3>ユーザ名：
+        <input type="text" id="user_name" style="width: 250px;height: 26px;font-size:16px;">
+      </h3>
+      <h3>生年月日：
+        <input type="text" id="birthday" style="width: 250px;height: 26px;font-size:16px;">
+      </h3>
+      <h3>ユーザID：
+        <input type="text" id="user_id" style="width: 250px;height: 26px;font-size:16px;">
+      </h3>
+      <h3>パスワード：
+        <input type="password" id="password" style="width: 250px;height: 26px;font-size:16px;">
+      </h3>
+      <h3>パスワード再入力：
+        <input type="password" id="password_re" style="width: 250px;height: 26px;font-size:16px">
+      </h3>
+      <h3>メールアドレス：
+        <input type="text" id="mail" style="width: 250px;height: 26px;font-size:16px;">
+      </h3>
+    </div>
+    <div id="button_set">
+      <input type="submit" value="登録" class="square_btn" />
+      <input type="button" onclick="location.href='./index.html'" value="戻る" class="square_btn">
+    </div>
+  </form>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#sign_up").submit(function() {
+        event.preventDefault();
+        var $form = $(this);
+        if ($("#password").val() != $("#password_re").val()) {
+          alert("パスワードが異なります．");
+          console.log("n");
+        }
+        else {
+          console.log("y");
+          $.ajax({ //データ送信
+              url: "./cgi-bin/sign_up.py",
+              type: "post",
+              dataType: "text",
+              data: {
+                user_name: $("#user_name").val(),
+                birthday: $("#birthday").val(),
+                user_id: $("#user_id").val(),
+                password: $("#password").val(),
+                password_re: $("#password_re").val(),
+                mail: $("#mail").val(),
+              },
+              timeout: 60000,
+              error: function() {
+                alert("Timeout：もう一度試してください");
+              },
+            })
+            .done(function(response) { //データを受信
+              console.log(response);
+              res = $.parseJSON(response);
+              console.log(res);
+              if (res["message"] == "Yes"){
+                alert("登録完了しました．\nホームページでログインしてください．")
+                window.location.href = "./index.html";
+              }
+            })
+            .fail(function() {
+              $(".result").html("Failed.");
+            });
+          }
+      });
+    });
+  </script>
+</body>
+
+</html>
